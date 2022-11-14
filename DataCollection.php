@@ -21,4 +21,9 @@ class DataCollection{
         return $this->header;
     }
 
+
+    public function getAllData(): array {
+        return $this->data;
+    }
+
 }

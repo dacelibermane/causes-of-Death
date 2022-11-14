@@ -29,12 +29,12 @@ class Row
 
     public function getRowEntry(): string {
         if($this->typeOfDeath === "Vardarbīga nāve"){
-            return "$this->date: $this->typeOfDeath | ". $this->removeDuplicates($this->violentDeath) . " | " .  $this->removeDuplicates($this->typeOfViolence);
+            return "$this->date: $this->typeOfDeath | ". $this->removeDuplicates($this->violentDeath) . " | " .  $this->removeDuplicates($this->typeOfViolence) . PHP_EOL;
         }
         if($this->typeOfDeath === "Nevardarbīga nāve") {
-            return "$this->date: $this->typeOfDeath | " .  $this->removeDuplicates($this->nonViolentDeath) . ".";
+            return "$this->date: $this->typeOfDeath | " .  $this->removeDuplicates($this->nonViolentDeath) . "." . PHP_EOL;
         }
-        return "$this->date: $this->typeOfDeath";
+        return "$this->date: $this->typeOfDeath" . PHP_EOL;
 
     }
 }

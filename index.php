@@ -23,7 +23,9 @@ echo "Ekspertīzēs noteikto nāves cēloņu statistika." . PHP_EOL;
 echo "Kopumā atrasti " . $data->getTotalSum(). " ieraksti." . PHP_EOL;
 
 echo str_replace("_", " ", ucwords($data->getHeader()->getRowHeader())) . PHP_EOL;
-
+foreach ($data->getAllData() as $row) {
+    echo $row->getRowEntry();
+}
 
 
 
