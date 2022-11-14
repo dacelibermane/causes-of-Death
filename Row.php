@@ -19,10 +19,6 @@ class Row
 
     public function removeDuplicates(string $deathType): string
     {
-        //implode pārvērš no string uz array, savieno array elemntus ar, šajā gadījumā ";"
-        //array_unique — Removes duplicate values from an array
-        //explode atgriež masīvu ar stringiem, ko iegūstam no csv par
-        //The explode() function breaks a string into an array, but the implode function returns a string from the elements of an array.
         return implode("; ", array_unique(explode(";", $deathType)));
     }
 
