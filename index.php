@@ -29,23 +29,23 @@ while (true) {
 
     $userSelection = (int)readline("<<");
 
-    if ($userSelection === 1) {
-        foreach ($data->getAllData() as $row) {
-            echo $row->getRowEntry();
-        }
-    }
+    switch ($userSelection) {
+        case 1:
+            foreach ($data->getAllData() as $row) {
+                echo $row->getRowEntry();
+            }
+            break;
 
-//pēkšņa nāve, pašnāvības, nelaimes gadījumi sadzīvē...
-    if ($userSelection === 2) {
-        $userSearch = readline("Ierakstiet nāves iemeslu:");
-        echo "Kopumā tika atrasti {$data->searchDeathCause($userSearch)} ieraksti." . PHP_EOL;
-    }
+        case 2:
+            $userSearch = readline("Ierakstiet nāves iemeslu:");
+            echo "Kopumā tika atrasti {$data->searchDeathCause($userSearch)} ieraksti." . PHP_EOL;
+            break;
 
-    if ($userSelection === 3) {
-        echo "Uz tikšanos!";
-        break;
+        default:
+            echo "Uz tikšanos!";
+            exit;
     }
-
+    
 }
 
 
