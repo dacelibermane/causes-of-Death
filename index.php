@@ -8,24 +8,49 @@ $index = 0;
 if (($handle = fopen("causes-of-death.csv", "r")) !== false) {
     while (($row = fgetcsv($handle, 1000, ",")) !== false) {
 
-        if($index == 0){
-            $data->addHeader(new Row($row[1], $row[2], $row[3], $row[4], $row[5]));
-        }else{
-            $data->addData(new Row($row[1], $row[2], $row[3], $row[4], $row[5]));
-        }
+        $data->addData(new Row($row[1], $row[2], $row[3], $row[4], $row[5]));
+
 
         $index++;
     }
     fclose($handle);
 }
 
-echo "Ekspertīzēs noteikto nāves cēloņu statistika." . PHP_EOL;
-echo "Kopumā atrasti " . $data->getTotalSum(). " ieraksti." . PHP_EOL;
+$data->setAllCauses();
 
-echo str_replace("_", " ", ucwords($data->getHeader()->getRowHeader())) . PHP_EOL;
-foreach ($data->getAllData() as $row) {
-    echo $row->getRowEntry();
+echo "Ekspertīzēs noteikto nāves cēloņu statistika." . PHP_EOL;
+echo "Kopumā atrasti " . $data->getTotalSum() . " ieraksti." . PHP_EOL;
+
+while (true) {
+    echo "Izvēlieties kādus datus vēlaties apskatīt: " . PHP_EOL;
+    echo "Apskatīt visus ierakstus - 1\n";
+    echo "Apskatīt konkrētā nāves gadījumu skaitu - 2\n";
+    echo "Iziet - 3\n";
+
+    $userSelection = (int)readline("<<");
+
+    if ($userSelection === 1) {
+        foreach ($data->getAllData() as $row) {
+            echo $row->getRowEntry();
+        }
+    }
+
+//pēkšņa nāve, pašnāvības, nelaimes gadījumi sadzīvē...
+    if ($userSelection === 2) {
+        $userSearch = readline("Ierakstiet nāves iemeslu:");
+        echo "Kopumā tika atrasti {$data->searchDeathCause($userSearch)} ieraksti." . PHP_EOL;
+    }
+
+    if ($userSelection === 3) {
+        echo "Uz tikšanos!";
+        break;
+    }
+
 }
+
+
+
+
 
 
 
